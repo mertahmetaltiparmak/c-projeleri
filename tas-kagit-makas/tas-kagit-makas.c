@@ -157,6 +157,8 @@ int main() {
             if (option > 3 || option < 1) {
                 printf("\nHatali deger!!\n");
                 _sleep(1000);
+                option = menu();
+                // bu seferde case 0 algiliyor.
                 continue;
             }
     }
