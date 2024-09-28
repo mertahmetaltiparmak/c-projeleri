@@ -7,12 +7,12 @@ int main() {
     int hour, minute, second;
     hour = minute = second = 0;
     while (1) {
-        system("cls");
         // ekrani temizlemek icin clear screen acilimi
+        system("cls");
         printf("%02d : %02d : %02d", hour, minute, second);
-        fflush(stdout);
         // akis bellegini temizlemek icin
         // standart cikis ismi
+        fflush(stdout);
         second++;
         if (second == 60) {
             minute += 1;
@@ -27,8 +27,8 @@ int main() {
             minute = 0;
             second = 0; 
         }
-        _sleep(1000);
         // milisaniye cinsinden aldigi icin 1000 girdik.
+        _sleep(1000);
     }
     return 0;
 }
