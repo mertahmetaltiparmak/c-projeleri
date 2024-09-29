@@ -2,169 +2,131 @@
 #include <stdlib.h>
 #include <time.h>
 // icinden _sleep(zaman);
-// funciton'nini aldim bu icine girdigin degerde milisaniye cinsi ama programi bekletiyor.
+// function'nini aldim bu icine girdigin degerde milisaniye cinsi ama programi bekletiyor.
+int userWining(int, int);
+int userLosing(int, int);
+int draw(int, int);
 
 int menu();
-// yarin kazanma ve kaybetmeyi void'e al cok kotu duruyor suan.
-
-// 1 = tas tas kagidi kaybeder makasi yener.
-// 2 = kagit
-// 3 = makas
-
+// 4 = tas .
+// 5 = kagit
+// 6 = makas
 int main() {
-    int option = 1, random, userScore = 0, computerScore = 0;
+    int option = 1, random, userScore = 0, computerScore = 0, tas = 0, kagit = 0, makas = 0;
+    char userName[40];
 
     printf("\t\t\t\t\tTas Kagit Makas\n\n");
+    printf("kullanici adi girin:");
+
+    scanf("%s", &userName);
 
     while (option != 0) {
 
-    srand(time(NULL));
+        srand(time(NULL));
 
-    option = menu();
+        option = menu();
 
-    random = rand() % 3 + 1;
-
-    switch (option) {
-        case 1:
-            // tas secimi
-            if (random == 2) {
-                printf("\n");
-                printf("Bilgisayarin Secimi: Kagit\n");
-                printf("Kaybettiniz\n\n");
+        random = rand() % 3 + 4;
+        // + 4 yaparak 3 7 arasindaki tum degerleri alıyor 4 , 5 , 6 diyip (tek tek deneyerek bunu buldum.)
+        if (random == 4) {
+            tas = 4;
+        } else if (random == 5) {
+            kagit = 5;
+        } else {
+            makas = 6;
+        }
+        switch (option) {
+            case 1:
+                // tas secimi
+                if (random == kagit) {
+                    printf("\n");
+                    printf("Bilgisayarin Secimi: Kagit\n");
+                    userScore -= 1;
+                    computerScore += 1;
+                    userLosing(userScore, computerScore);
+                    continue;
+                }
+                else if (random == makas) {
+                    printf("\n");
+                    printf("Bilgisayarin secimi: Makas\n");
+                    userScore += 1;
+                    computerScore -= 1;
+                    userWining(userScore, computerScore);
+                    continue;
+                }
+                else (random == tas); {
+                    printf("\n");
+                    printf("Bilgisayarin secimi: Tas\n");
+                    draw(userScore, computerScore);
+                    continue;
+                }
+            case 2:
+                // kagit secimi
+                if (random == tas) {
+                    printf("\nBilgisayarin secimi: Tas\n");
+                    userScore += 1;
+                    computerScore -= 1;
+                    userWining(userScore, computerScore);
+                    continue;
+                }
+                else if (random == kagit) {
+                    printf("\nBilgisayarin secimi: Kagit\n");
+                    draw(userScore, computerScore);
+                    continue;
+                }
+                else (random == makas); {
+                    printf("\nBilgisayarin secimi: Makas\n");
+                    userScore -= 1;
+                    computerScore += 1;
+                    userLosing(userScore, computerScore);
+                    continue;
+                }
+            case 3:
+                // makas secimi
+                if (random == tas) {
+                    printf("\nBilgisayarin secimi: Tas\n");
+                    userScore -= 1;
+                    computerScore += 1;
+                    userLosing(userScore, computerScore);
+                    continue;
+                }
+                else if (random == kagit) {
+                    printf("\nBilgisayarin secimi: Kagit\n");
+                    userScore += 1;
+                    computerScore -= 1;
+                    userWining(userScore, computerScore);
+                    continue;
+                }
+                else (random == makas); {
+                    printf("\nBilgisayarin secimi: Makas\n");
+                    draw(userScore, computerScore);
+                    continue;
+                }
+            case 0:
+                printf("Oyun sonu skoru:\n\n");
                 _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
+                printf("%s'in Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userName, userScore, computerScore);
                 _sleep(1000);
-                userScore -= 1;
-                computerScore += 1;
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-            else if (random == 3) {
-                printf("\n");
-                printf("Bilgisayarin secimi: Makas\n");
-                printf("Tebrikler, kazandiniz\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                userScore += 1;
-                computerScore -= 1;
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-            else (random == 1); {
-                printf("\n");
-                printf("Bilgisayarin secimi: Tas\n");
-                printf("Berabere\n\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-        case 2:
-            // kagit secimi
-            if (random == 1) {
-                printf("\n");
-                printf("Bilgisayarin secimi: Tas\n");
-                printf("Tebrikler, kazandiniz\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                userScore += 1;
-                computerScore -= 1;
-                printf("Kulanicinin Skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-            else if (random == 2) {
-                printf("\n");
-                printf("Bilgisayarin secimi: Kagit\n");
-                printf("Berabere\n\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-            else (random == 3); {
-                printf("\n");
-                printf("Bilgisayarin secimi: Makas\n");
-                printf("Kaybettiniz\n\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                userScore -= 1;
-                computerScore += 1;
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-        case 3:
-            // makas secimi
-            if (random == 1) {
-                printf("\n");
-                printf("Bilgisayarin secimi: Tas\n");
-                printf("Kaybettiniz\n\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                userScore -= 1;
-                computerScore += 1;
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-            else if (random == 2) {
-                printf("\n");
-                printf("Bilgisayarin secimi: Kagit\n");
-                printf("Tebrikler, kazandiniz\n\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                userScore += 1;
-                computerScore -= 1;
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000); 
-                continue;
-            }
-            else (random == 3); {
-                printf("\n");
-                printf("Bilgisayarin secimi: Makas\n");
-                printf("Berabere\n\n");
-                _sleep(1000);
-                printf("Skor hesaplaniyor...\n\n");
-                _sleep(1000);
-                printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-                _sleep(2000);
-                continue;
-            }
-        case 0:
-            printf("Oyun sonu skoru:\n\n");
-            _sleep(1000);
-            printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-            _sleep(1000);
-            if (computerScore > userScore) {
-                printf("Bilgisayar kazandi.\n\n");
-            } else {
-                printf("Kullanici kazandi.\n\n");
-            }
-            break;
-        default:
-            if (option > 3 || option < 1) {
-                printf("\nHatali deger!!\n");
-                _sleep(1000);
-                option = menu();
-                // bu seferde case 0 algiliyor.
-                continue;
-            }
+                if (computerScore > userScore) {
+                    printf("Bilgisayar kazandi.\n\n");
+                } else if (userScore > computerScore) {
+                    printf("%s kazandi.\n\n", userName);
+                } else {
+                    printf("Berabere.\n\n");
+                }
+                break;
+            default:
+                if (option > 3 || option < 1) {
+                    printf("\nHatali deger!!\n");
+                    _sleep(1000);
+                    option = menu();
+                    // bu seferde case 0 algiliyor.
+                    continue;
+                }
+        }
     }
-    }
-    system("pause");
-    return 0;
+        system("pause");
+        return 0;
 }
 int menu() {
     int choice;
@@ -178,4 +140,34 @@ int menu() {
     scanf("%d", &choice);
     
     return choice;
+}
+int userWining(userScore, computerScore) {
+     printf("Tebrikler, kazandiniz\n");
+    _sleep(1000);
+    printf("Skor hesaplaniyor...\n\n");
+    _sleep(1000);
+    printf("Kulanicinin Skoru:%d\t\t\tBilgisayarin skoru:%d\n\n", userScore, computerScore);
+    _sleep(2000);
+    
+    return userScore, computerScore;
+}
+int userLosing(userScore, computerScore) {
+    printf("Kaybettiniz\n\n");
+    _sleep(1000);
+    printf("Skor hesaplaniyor...\n\n");
+    _sleep(1000);
+    printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
+    _sleep(2000);
+    
+    return userScore, computerScore;
+}
+int draw(userScore, computerScore) {
+    printf("Berabere\n\n");
+    _sleep(1000);
+    printf("Skor hesaplaniyor...\n\n");
+    _sleep(1000);
+    printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
+    _sleep(2000);
+
+    return userScore, computerScore;
 }
