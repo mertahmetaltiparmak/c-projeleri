@@ -3,7 +3,8 @@
 #include <time.h>
 // icinden _sleep(zaman);
 // function'nini aldim bu icine girdigin degerde milisaniye cinsi ama programi bekletiyor.
-int userWining(int, int);
+void universalSleep();
+int userWinning(int, int);
 int userLosing(int, int);
 int draw(int, int);
 
@@ -14,6 +15,7 @@ int menu();
 int main() {
     int option = 1, random, userScore = 0, computerScore = 0, tas = 0, kagit = 0, makas = 0;
     char userName[40];
+    mySleep = _sleep(1000);
 
     printf("\t\t\t\t\tTas Kagit Makas\n\n");
     printf("kullanici adi girin:");
@@ -51,7 +53,7 @@ int main() {
                     printf("Bilgisayarin secimi: Makas\n");
                     userScore += 1;
                     computerScore -= 1;
-                    userWining(userScore, computerScore);
+                    userWinning(userScore, computerScore);
                     continue;
                 }
                 else (random == tas); {
@@ -66,7 +68,7 @@ int main() {
                     printf("\nBilgisayarin secimi: Tas\n");
                     userScore += 1;
                     computerScore -= 1;
-                    userWining(userScore, computerScore);
+                    userWinning(userScore, computerScore);
                     continue;
                 }
                 else if (random == kagit) {
@@ -94,7 +96,7 @@ int main() {
                     printf("\nBilgisayarin secimi: Kagit\n");
                     userScore += 1;
                     computerScore -= 1;
-                    userWining(userScore, computerScore);
+                    userWinning(userScore, computerScore);
                     continue;
                 }
                 else (random == makas); {
@@ -104,9 +106,9 @@ int main() {
                 }
             case 0:
                 printf("Oyun sonu skoru:\n\n");
-                _sleep(1000);
+                universalSleep();
                 printf("%s'in Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userName, userScore, computerScore);
-                _sleep(1000);
+                universalSleep();
                 if (computerScore > userScore) {
                     printf("Bilgisayar kazandi.\n\n");
                 } else if (userScore > computerScore) {
@@ -116,13 +118,11 @@ int main() {
                 }
                 break;
             default:
-                if (option > 3 || option < 1) {
                     printf("\nHatali deger!!\n");
-                    _sleep(1000);
+                    universalSleep();
                     option = menu();
                     // bu seferde case 0 algiliyor.
                     continue;
-                }
         }
     }
         system("pause");
@@ -141,33 +141,36 @@ int menu() {
     
     return choice;
 }
-int userWining(userScore, computerScore) {
+int userWinning(userScore, computerScore) {
      printf("Tebrikler, kazandiniz\n");
-    _sleep(1000);
+    universalSleep();
     printf("Skor hesaplaniyor...\n\n");
-    _sleep(1000);
+    universalSleep();
     printf("Kulanicinin Skoru:%d\t\t\tBilgisayarin skoru:%d\n\n", userScore, computerScore);
-    _sleep(2000);
+    universalSleep();
     
     return userScore, computerScore;
 }
 int userLosing(userScore, computerScore) {
     printf("Kaybettiniz\n\n");
-    _sleep(1000);
+    universalSleep();
     printf("Skor hesaplaniyor...\n\n");
-    _sleep(1000);
+    universalSleep();
     printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-    _sleep(2000);
+    universalSleep();
     
     return userScore, computerScore;
 }
 int draw(userScore, computerScore) {
     printf("Berabere\n\n");
-    _sleep(1000);
+    universalSleep();
     printf("Skor hesaplaniyor...\n\n");
-    _sleep(1000);
+    universalSleep();
     printf("Kulanicinin Skoru:%d\t\t\t Bilgisayarin skoru:%d\n\n", userScore, computerScore);
-    _sleep(2000);
+    universalSleep();
 
     return userScore, computerScore;
+}
+void universalSleep() {
+    _sleep(1500);
 }
