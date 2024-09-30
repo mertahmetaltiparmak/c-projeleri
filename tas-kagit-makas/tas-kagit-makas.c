@@ -15,7 +15,6 @@ int menu();
 int main() {
     int option = 1, random, userScore = 0, computerScore = 0, tas = 0, kagit = 0, makas = 0;
     char userName[40];
-    mySleep = _sleep(1000);
 
     printf("\t\t\t\t\tTas Kagit Makas\n\n");
     printf("kullanici adi girin:");
