@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <ctype.h>
 // aslinda basit bir kaydirma islemi yaparak sifreliyor normal deger olarak 3 almasi lazim ama disaridan girilen turlusunu yaptik.
 void menu() {
     printf("\n 1 - Sifrele\n");
@@ -29,6 +30,12 @@ int main() {
     while (choice != -1) {
         menu();
         scanf("%d", &choice);
+        // isdigit sayi degilse 0 donduruyor eger char veya string girersek bunu calistiyor.
+        if (isdigit(choice) == 0) {
+            printf("Hata!\nCikis yapiliyor...\n");
+            _sleep(1500);
+            break;
+        }
     switch (choice) {
         case 1:
             printf("Sifrelenecek metini giriniz: ");
