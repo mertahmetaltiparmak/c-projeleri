@@ -31,36 +31,38 @@ int main() {
         menu();
         scanf("%d", &choice);
         // isdigit sayi degilse 0 donduruyor eger char veya string girersek bunu calistiyor.
-        if (isdigit(choice) == 0) {
+        if (isdigit(choice) == 1) {
             printf("Hata!\nCikis yapiliyor...\n");
             _sleep(1500);
             break;
         }
-    switch (choice) {
-        case 1:
-            printf("Sifrelenecek metini giriniz: ");
-            // bosluktan sonraki metinleri almak icin bunu kullanabiliriz. getchar yerine   
-            scanf(" %[^\n]s", text);
-            printf("Key: ");
-            scanf("%d", &key);
+        else {
+        switch (choice) {
+            case 1:
+                printf("Sifrelenecek metini giriniz: ");
+                // bosluktan sonraki metinleri almak icin bunu kullanabiliriz. getchar yerine   
+                scanf(" %[^\n]s", text);
+                printf("Key: ");
+                scanf("%d", &key);
 
-            printf("Metin sifreleniyor...");
-            sezarSifreleme(text, key);
-            _sleep(1500);
-            printf("\nSifrelenmis metin: %s \n", text);
-            continue;
-        case 2:
-            printf("Sifresini cozmek istediginiz metni girin: ");
-            scanf(" %[^\n]s", text);
-            printf("Metnin sifresi cozuluyor...");
-            _sleep(1500);
-            sezarSifreCoz(text, key);
-            printf("\nCozulmus metin: %s \n",text);
-            continue;
-        case 0:
-            break;
-    }    
-}
+                printf("Metin sifreleniyor...");
+                sezarSifreleme(text, key);
+                _sleep(1500);
+                printf("\nSifrelenmis metin: %s \n", text);
+                continue;
+            case 2:
+                printf("Sifresini cozmek istediginiz metni girin: ");
+                scanf(" %[^\n]s", text);
+                printf("Metnin sifresi cozuluyor...");
+                _sleep(1500);
+                sezarSifreCoz(text, key);
+                printf("\nCozulmus metin: %s \n",text);
+                continue;
+            case 0:
+                break;
+        }    
+    }
+    }
     system("pause");
     return 0;
 }
